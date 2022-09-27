@@ -11,7 +11,7 @@ startButton.addEventListener("click", (e) => {
     game.startGame();
 });
 
-//Create event listener has been added for the keyup & keydown event so that pressing a physical keyboard button results in the handleInteraction() being called for the associated onscreen keyboard button  */
+/*Create event listener has been added for the keyup & keydown event so that pressing a physical keyboard button results in the handleInteraction() being called for the associated onscreen keyboard button  */
 
 const letters = document.getElementById('qwerty');
 const letter = document.querySelectorAll('#qwerty button');

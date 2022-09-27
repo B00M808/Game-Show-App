@@ -25,16 +25,12 @@ class Phrase {
             }
             phraseList.appendChild(li);
 
-        
         }
       
     }
 
-  
-}
-
-//******element that has a phrase class is a div, so add li elements to div.phrase. refer to showMatchedLetter
-const ul = document.querySelector('#phrase ul').firstElementChild;
+    //******element that has a phrase class is a div, so add li elements to div.phrase. refer to showMatchedLetter
+/*ul = document.querySelector('#phrase ul').firstElementChild;
 
 //hide & space
 for(let i = 0; i < this.phrase.length; i++) {
@@ -46,16 +42,16 @@ for(let i = 0; i < this.phrase.length; i++) {
     }
     ul.appendChild(li)
 }
-
+*/
 
 //9  Part 1  
 //checkLetter() : check if a letter is in a phrase  & showMatchedLetter() : reveals the letters on the board that matches the player's selection
-function checkLetter(letter) {
+checkLetter(letter) {
     return this.phrase.includes(letter);
 }
 
 //showMatchedLetter loops over the this.phrase property and if the textContent of the li equals the letter parameter passed to the method then you can change the className hide to show
-function showMatchedLetter(letter){
+showMatchedLetter(letter){
 let letterCheck = document.querySelectorAll(".letter");
 let match = " ";
 for (let i = 0; i < letterCheck.length; i++) {
@@ -67,4 +63,8 @@ return null;
 }
 }
 return showMatchedLetter;
+
+}
+
+
 }
