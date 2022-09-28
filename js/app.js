@@ -11,21 +11,30 @@ startButton.addEventListener("click", (e) => {
     game.startGame();
 });
 
-/*Create event listener has been added for the keyup or keydown event so that pressing a physical keyboard button results in the handleInteraction() being called for the associated onscreen keyboard button  */
+const keys = document.querySelectorAll('.key');
+keys.forEach(button => keys.addEventListener('click', (e) => {
+    game.handleInteraction(e.target)
+}));
 
 //listener for onscreen keyboard button
 const letters = document.getElementById('qwerty');
 const letter = document.querySelectorAll('#qwerty button');
 
+letters.addEventListener("click", (e) => {
     const button = e.target;
     if (button.tagName === 'BUTTON') {
-        button.classList.add('chosen');
-    }
-
-    letters.addEventListener("click", (e) => {
+        button.classList.add('.chosen');
         game.handleInteraction(button)
-    });
+    }
+});
 
-const keydown = document.addEventListener("keydown", (e) => {
+/*Create event listener has been added for the keyup or keydown event so that pressing a physical keyboard button results in the handleInteraction() being called for the associated onscreen keyboard button  */
+
+//on-screen & chosen
+//loop over all the button elements
+//if the textContent matches e.key call the handleInteraction method, pass in that button element
+/*/
+const keydown = document.addEventListener('keydown', (e) => {
+    let 
     game.handleInteraction(e.key);
-})
+})*/

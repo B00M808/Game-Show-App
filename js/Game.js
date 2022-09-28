@@ -74,7 +74,7 @@ handleInteraction(e) {
         e.className = "wrong";
         this.removeLife()
     }
-   // e.disabled = true
+    //e.disabled = true
 };
 
 //removes a life from the scoreboard, one of the liveHeart.png is replaced with a lostHeart.png, increments & calls the gameOver
