@@ -29,21 +29,6 @@ class Phrase {
       
     }
 
-    //******element that has a phrase class is a div, so add li elements to div.phrase. refer to showMatchedLetter
-/*ul = document.querySelector('#phrase ul').firstElementChild;
-
-//hide & space
-for(let i = 0; i < this.phrase.length; i++) {
-    let phraseMatch = ul.getElementsByClassName(letter)[i];
-    if(letters[i] === ''){
-        li.setAttribute('class', `space ${letters[i]}`);
-    }else {
-        li.setAttribute('class', `hide letter ${letters[i]}`);
-    }
-    ul.appendChild(li)
-}
-*/
-
 //9  Part 1  
 //checkLetter() : check if a letter is in a phrase  & showMatchedLetter() : reveals the letters on the board that matches the player's selection
 checkLetter(letter) {
@@ -56,10 +41,10 @@ let letterCheck = document.querySelectorAll(".letter");
 let match = " ";
 for (let i = 0; i < letterCheck.length; i++) {
 const li = letterCheck[i];
-if (e.textContent === li.textContent.toLowerCase()) {
-showMatchedLetter = li.classList.add("show");
-} else {
-return null;
+if (letter === li.textContent.toLowerCase()) {
+    showMatchedLetter = li.classList.add("show");
+}else {
+    showMatchedLetter = li.classList.remove("hide");
 }
 }
 return showMatchedLetter;
