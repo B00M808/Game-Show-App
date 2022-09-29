@@ -17,23 +17,18 @@ class Game {
         this.alivePoints = 5;
     };
 
-    //getRandomPhrase() Method
     getRandomPhrase() {
         const num = Math.floor(Math.random() * this.phrases.length);
         const randomPhrase = this.phrases[num];
         return randomPhrase;
     };
 
-    //startGame() Method #7 
     startGame() {
         document.getElementById('overlay').style.display = 'none';
         this.activePhrase = this.getRandomPhrase();
         this.activePhrase.addPhraseToDisplay();
     };
 
-    //handle -> removeLife > checkForWin > gameOver > resetGame
-
-    //You Win
     checkForWin() {
         let hidden = document.querySelectorAll('.hide');
         let youWin = true;
@@ -56,7 +51,7 @@ class Game {
         })
     };
 
-    //handleInteraction() Method #11 
+    //handleInteraction() Method 
     //onscreen keyboard button clicked, matches a letter in phrase then directs game based on correct or incorrect guess
     handleInteraction(e) {
         if (this.activePhrase.checkLetter(e.textContent)) {
@@ -75,33 +70,34 @@ class Game {
         //e.disabled = true
     };
 
+    //original start screen overlay, the outcome updates overlay, messages displayed, replaces the overlays start 
     gameOver(gameValue) {
         let overlay = document.getElementById('overlay');
         let gameMessage = document.getElementById("game-over-message");
         overlay.style.display = "flex";
         if (gameValue === false) {
-            gameMessage.textContent = "Try again, please";
+            gameMessage.textContent = "Better Luck Next Time";
             overlay.className = "lose";
             this.reset();
         } else {
             overlay.className = "win";
-            gameMessage.textContent = "Congrats, you win. Wanna play again?"
+            gameMessage.textContent = "Congrats, You Win! Wanna Play Again?"
             this.reset();
         }
     }
 
-    //removes a life from the scoreboard, one of the liveHeart.png is replaced with a lostHeart.png, increments & calls the gameOver
+    //removes a life from the scoreboard, update heart image, (de)increments & calls message
     removeLife() {
         let hearts = document.querySelectorAll('.tries img');
         let totalHearts = this.missed;
         hearts[totalHearts].src = "images/lostHeart.png";
         this.missed = this.missed + 1;
-        if(this.missed>4){
+        if(this.missed > 4){
             this.gameOver(false);
         }
     }
-    //currentImage.src = lostHeart; heart disappears when call game.removeLife
-
+    
+    //reset gameboard between games, removed all li elem, enabled onscreen buttons, reset heart images
     reset() {
         let startButton = document.getElementById("btn__reset");
         let phraseList = document.querySelector("#phrase ul");

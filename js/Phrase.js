@@ -7,7 +7,8 @@ class Phrase {
   constructor(phrase) {
     this.phrase = phrase = phrase.toLowerCase();
   }
-  //split up the phrase into an array, each character will be it's own string inside of it #6
+
+  //split up the phrase into an array, each character will be it's own string inside of it 
   addPhraseToDisplay() {
     let phraseList = document.querySelector("#phrase ul");
     let phraseLetters = this.phrase.split("");
@@ -29,8 +30,7 @@ class Phrase {
       
     }
 
-//9  Part 1  
-//checkLetter() : check if a letter is in a phrase  & showMatchedLetter() : reveals the letters on the board that matches the player's selection
+//check if a letter is in a phrase 
 checkLetter(letter) {
     return this.phrase.includes(letter);
 }

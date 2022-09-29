@@ -2,7 +2,7 @@
  * Project 4 - OOP Game App
  * app.js */
 
-//Start Game Button #8 
+//Start Game Button
 const startButton = document.getElementById("btn__reset");
 let game;
 
@@ -28,14 +28,3 @@ letters.addEventListener("click", (e) => {
         game.handleInteraction(button)
     }
 });
-
-/*Create event listener has been added for the keyup or keydown event so that pressing a physical keyboard button results in the handleInteraction() being called for the associated onscreen keyboard button  */
-
-//on-screen & chosen
-//loop over all the button elements
-//if the textContent matches e.key call the handleInteraction method, pass in that button element
-/*/
-const keydown = document.addEventListener('keydown', (e) => {
-    let 
-    game.handleInteraction(e.key);
-})*/
