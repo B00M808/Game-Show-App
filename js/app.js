@@ -12,9 +12,10 @@ startButton.addEventListener("click", (e) => {
 });
 
 const keys = document.querySelectorAll('.key');
-keys.forEach(button => keys.addEventListener('click', (e) => {
-    game.handleInteraction(e.target)
-}));
+keys.forEach(button => key => {
+    key.classList.remove('chosen', 'wrong');
+    key.disabled = false;
+});
 
 //listener for onscreen keyboard button
 const letters = document.getElementById('qwerty');

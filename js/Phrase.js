@@ -36,18 +36,16 @@ checkLetter(letter) {
 }
 
 //showMatchedLetter loops over the this.phrase property and if the textContent of the li equals the letter parameter passed to the method then you can change the className hide to show
-showMatchedLetter(letter){
-let letterCheck = document.querySelectorAll(".letter");
-let match = " ";
-for (let i = 0; i < letterCheck.length; i++) {
-const li = letterCheck[i];
-if (letter === li.textContent.toLowerCase()) {
-    showMatchedLetter = li.classList.add("show");
-}else {
-    showMatchedLetter = li.classList.remove("hide");
-}
-}
-return showMatchedLetter;
+showMatchedLetter(letter) {
+    const letterCheck = document.querySelectorAll('.letter');
+    for (let i = 0; i < letterCheck.length; i++) {
+        const li = letterCheck[i];
+        if (letterCheck[i].classList.contains(letter)) {
+            letterCheck[i].classList.remove('hide');
+            letterCheck[i].classList.add('show')
+        }
+    }
+    return showMatchedLetter;
 
 }
 
