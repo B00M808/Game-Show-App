@@ -39,15 +39,12 @@ checkLetter(letter) {
 showMatchedLetter(letter) {
     const letterCheck = document.querySelectorAll('.letter');
     for (let i = 0; i < letterCheck.length; i++) {
-        const li = letterCheck[i];
-        if (letterCheck[i].classList.contains(letter)) {
-            letterCheck[i].classList.remove('hide');
-            letterCheck[i].classList.add('show')
+        let li = letterCheck[i];
+        if (li.textContent == letter) {
+            li.classList.remove('hide');
+            li.classList.add('show')
         }
     }
-    return showMatchedLetter;
-
+    return letterCheck;
 }
-
-
 }

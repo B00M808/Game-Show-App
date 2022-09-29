@@ -2,7 +2,6 @@
  * Project 4 - OOP Game App
  * Game.js */
 
-
 //Created the Game Constructor
 class Game {
     constructor() {
@@ -15,8 +14,9 @@ class Game {
             new Phrase('Wakanda Forever')
         ];
         this.activePhrase = null;
+        this.alivePoints = 5;
     };
-    
+
     //getRandomPhrase() Method
     getRandomPhrase() {
         const num = Math.floor(Math.random() * this.phrases.length);
@@ -26,19 +26,17 @@ class Game {
 
     //startGame() Method #7 
     startGame() {
-    document.getElementById('overlay').style.display = 'none';
-    this.activePhrase = this.getRandomPhrase();
-    this.activePhrase.addPhraseToDisplay();
+        document.getElementById('overlay').style.display = 'none';
+        this.activePhrase = this.getRandomPhrase();
+        this.activePhrase.addPhraseToDisplay();
     };
 
     //handle -> removeLife > checkForWin > gameOver > resetGame
 
-//You Win
+    //You Win
     checkForWin() {
-
-
         let hidden = document.querySelectorAll('.hide');
-        const youWin = true;
+        let youWin = true;
         const emptyLetterBoxes = document.querySelectorAll('.letter')
 
         emptyLetterBoxes.forEach(letter => {
@@ -58,48 +56,80 @@ class Game {
         })
     };
 
-//handleInteraction() Method #11 
-//onscreen keyboard button clicked, matches a letter in phrase then directs game based on correct or incorrect guess
-handleInteraction(e) {
-    if(this.activePhrase.checkLetter(e.textContent)) {
-        e.className = "chosen";
-        this.activePhrase.showMatchedLetter(e.textContent);
-        if (this.checkForWin()) {
-            this.gameOver(true);
+    //handleInteraction() Method #11 
+    //onscreen keyboard button clicked, matches a letter in phrase then directs game based on correct or incorrect guess
+    handleInteraction(e) {
+        if (this.activePhrase.checkLetter(e.textContent)) {
+            e.className = "chosen";
+            this.activePhrase.showMatchedLetter(e.textContent);
+            if (this.checkForWin()) {
+                this.gameOver(true);
+            }
+            if (this.alivePoints <= 1) {
+                this.gameOver(false);
+            }
+        } else if (e.disabled === false) {
+            e.className = "wrong";
+            this.removeLife()
         }
-        if (this.missed > 4) {
+        //e.disabled = true
+    };
+
+    gameOver(gameValue) {
+        let overlay = document.getElementById('overlay');
+        let gameMessage = document.getElementById("game-over-message");
+        overlay.style.display = "flex";
+        if (gameValue === false) {
+            gameMessage.textContent = "Try again, please";
+            overlay.className = "lose";
+            this.reset();
+        } else {
+            overlay.className = "win";
+            gameMessage.textContent = "Congrats, you win. Wanna play again?"
+            this.reset();
+        }
+    }
+
+    //removes a life from the scoreboard, one of the liveHeart.png is replaced with a lostHeart.png, increments & calls the gameOver
+    removeLife() {
+        let hearts = document.querySelectorAll('.tries img');
+        let totalHearts = this.missed;
+        hearts[totalHearts].src = "images/lostHeart.png";
+        this.missed = this.missed + 1;
+        if(this.missed>4){
             this.gameOver(false);
         }
-    }else if(e. disabled === false) {
-        e.className = "wrong";
-        this.removeLife()
     }
-    //e.disabled = true
-};
+    //currentImage.src = lostHeart; heart disappears when call game.removeLife
 
-//removes a life from the scoreboard, one of the liveHeart.png is replaced with a lostHeart.png, increments & calls the gameOver
-removeLife() {
-
-    this.alivePoints = this.alivePoints - 1
-        const totalHearts = this.alivePoints;
-        heart(totalHearts).src = "images/lostHeart.png"
-    }
-//currentImage.src = lostHeart; heart disappears when call game.removeLife
-    
     reset() {
-        phraseContainer.innerHTML = " "
-        startGameOverlay.style.display = "none"
-        this.createPhrases()
+        let startButton = document.getElementById("btn__reset");
+        let phraseList = document.querySelector("#phrase ul");
+        let chosenLetters = document.querySelectorAll(".chosen");
+        let wrongLetters = document.querySelectorAll(".wrong");
+        let hearts = document.querySelectorAll(".tries img");
+
+        startButton.textContent = "Play Again";
+
+        for (let i = 0; i < chosenLetters.length; i++) {
+            chosenLetters[i].className = "key";
+            chosenLetters[i].disabled = false;
+        }
+
+        for (let i = 0; i < wrongLetters.length; i++) {
+            wrongLetters[i].className = "key";
+            wrongLetters[i].disabled = false;
+        }
+
+        console.log(phraseList);
+        phraseList.textContent = " ";
+        // startGameOverlay.style.display = "none"
+        // this.createPhrases()
         this.alivePoints = 5;
-        startGameOverlay.className = "start"
+        // startGameOverlay.className = "start"
         hearts.forEach(heart => {
-            heart.childNodes[0].src = "images/liveHeart.png";     
-            
+            heart.src = "images/liveHeart.png";
         });
-    
-        disabled = false
+        // disabled = false
     }
-
-
-
 }
