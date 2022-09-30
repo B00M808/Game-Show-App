@@ -67,7 +67,7 @@ class Game {
             e.className = "wrong";
             this.removeLife()
         }
-        key.disabled = false;
+        e.disabled = true;
     };
 
     //original start screen overlay, the outcome updates overlay, messages displayed, replaces the overlays start 
