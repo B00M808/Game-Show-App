@@ -51,23 +51,19 @@ class Game {
         })
     };
 
-    //handleInteraction() Method 
     //onscreen keyboard button clicked, matches a letter in phrase then directs game based on correct or incorrect guess
     handleInteraction(e) {
+        e.disabled = true;
         if (this.activePhrase.checkLetter(e.textContent)) {
             e.className = "chosen";
             this.activePhrase.showMatchedLetter(e.textContent);
             if (this.checkForWin()) {
                 this.gameOver(true);
             }
-            if (this.alivePoints <= 1) {
-                this.gameOver(false);
-            }
-        } else if (e.disabled === false) {
+        } else {
             e.className = "wrong";
             this.removeLife()
         }
-        e.disabled = true;
     };
 
     //original start screen overlay, the outcome updates overlay, messages displayed, replaces the overlays start 
@@ -119,13 +115,10 @@ class Game {
 
         console.log(phraseList);
         phraseList.textContent = " ";
-        // startGameOverlay.style.display = "none"
-        // this.createPhrases()
         this.alivePoints = 5;
-        // startGameOverlay.className = "start"
         hearts.forEach(heart => {
             heart.src = "images/liveHeart.png";
         });
-        // disabled = false
+        
     }
 }
